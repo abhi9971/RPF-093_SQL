@@ -1,5 +1,5 @@
 Last login: Sun Jan 23 22:38:32 on ttys000
-abhishekrajawat@Akansha-MacBook-Air ~ % mysql --user=root -p
+akansha@Akansha-MacBook-Air ~ % mysql --user=root -p
 Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 13
