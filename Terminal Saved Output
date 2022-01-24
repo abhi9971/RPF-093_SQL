@@ -63,7 +63,7 @@ mysql> create table Address Book;
 ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Book' at line 1
 mysql> create table addresBook;
 ERROR 4028 (HY000): A table must have at least one visible column.
-mysql> create table AddressBook (FirstName varchar(150) , lastName varchar(150) , address varchar(150), city varchar(30) , state varchar(30) , zipCode int , phoneNumber bigint , email varchar(50) );  
+mysql> create table AddressBook (FirstName varchar(150) NOT NULL, lastName varchar(150) , address varchar(150), city varchar(30) , state varchar(30) , zipCode int NOT NULL , phoneNumber bigint NOT NULL , email varchar(50) );  
 Query OK, 0 rows affected (0.02 sec)
 
 mysql> insert into addressbook value ('abhishek','rajawat','kamlaNagar', 'gwalior','madhyaPradesh',474006,9971944613,'abhishekrajawat101@gmail.com');
