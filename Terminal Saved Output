@@ -236,4 +236,5 @@ mysql> select count(FirstName) from addressbook where type = 'Family' ;
 +------------------+
 1 row in set (0.00 sec)
 
-mysql> 
+mysql> exit
+bye
