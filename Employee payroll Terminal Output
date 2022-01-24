@@ -1,345 +1,4 @@
-Last login: Sun Jan 23 22:38:32 on ttys000
-abhishekrajawat@Abhisheks-MacBook-Air ~ % mysql --user=root -p
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 13
-Server version: 8.0.27 MySQL Community Server - GPL
 
-Copyright (c) 2000, 2021, Oracle and/or its affiliates.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> DROP DATABASE AddressBookServices;
-Query OK, 1 row affected (0.04 sec)
-
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| AddressBookService |
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-+--------------------+
-5 rows in set (0.00 sec)
-
-mysql> DROP DATABASE AddressBookService;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-+--------------------+
-4 rows in set (0.00 sec)
-
-mysql> create database AddressBookService;
-Query OK, 1 row affected (0.00 sec)
-
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| AddressBookService |
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-+--------------------+
-5 rows in set (0.00 sec)
-
-mysql> use AddressBookService;
-Database changed
-mysql> create table Address Book;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Book' at line 1
-mysql> create table addresBook;
-ERROR 4028 (HY000): A table must have at least one visible column.
-mysql> create table AddressBook (FirstName varchar(150) , lastName varchar(150) , address varchar(150), city varchar(30) , state varchar(30) , zipCode int , phoneNumber bigint , email varchar(50) );  
-Query OK, 0 rows affected (0.02 sec)
-
-mysql> insert into addressbook value ('abhishek','rajawat','kamlaNagar', 'gwalior','madhyaPradesh',474006,9971944613,'abhishekrajawat101@gmail.com');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> update addressbook set address = 'KamlaNagar' where FirstName = 'abhishek';
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
-mysql> delete from addressbook where FirstName = 'abhishek';
-Query OK, 1 row affected (0.00 sec)
-
-mysql> select * from addressbook where state = 'madhyaPradesh' and city = 'gwalior';
-Empty set (0.00 sec)
-
-mysql> insert into addressbook value ('abhishek','rajawat','kamlaNagar', 'gwalior','madhyaPradesh',474006,9971944613,'abhishekrajawat101@gmail.com');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> select count(city) from addressbook where state = 'madhyaPradesh' and city = 'gwalior';
-+-------------+
-| count(city) |
-+-------------+
-|           1 |
-+-------------+
-1 row in set (0.00 sec)
-
-mysql> select * from addressbook where city = 'gwalior' order by FirstName;
-+-----------+----------+------------+---------+---------------+---------+-------------+------------------------------+
-| FirstName | lastName | address    | city    | state         | zipCode | phoneNumber | email                        |
-+-----------+----------+------------+---------+---------------+---------+-------------+------------------------------+
-| abhishek  | rajawat  | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-+-----------+----------+------------+---------+---------------+---------+-------------+------------------------------+
-1 row in set (0.00 sec)
-
-mysql> insert into addressbook value ('sohail','kabeer','kamlaNagar', 'gwalior','madhyaPradesh',474006,9971944613,'abhishekrajawat101@gmail.com');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> select FirstName from addressbook ORDER BY FirstName;
-+-----------+
-| FirstName |
-+-----------+
-| abhishek  |
-| sohail    |
-+-----------+
-2 rows in set (0.00 sec)
-
-mysql> select FirstName from addressbook ORDER BY FirstName desc;
-+-----------+
-| FirstName |
-+-----------+
-| sohail    |
-| abhishek  |
-+-----------+
-2 rows in set (0.00 sec)
-
-mysql> select FirstName from addressbook ORDER BY FirstName desc where city = 'gwalior';
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where city = 'gwalior'' at line 1
-mysql> select FirstName from addressbook where city = 'gwalior' ORDER BY FirstName desc;
-+-----------+
-| FirstName |
-+-----------+
-| sohail    |
-| abhishek  |
-+-----------+
-2 rows in set (0.00 sec)
-
-mysql> select * FirstName from addressbook where city = 'gwalior' ORDER BY FirstName desc;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FirstName from addressbook where city = 'gwalior' ORDER BY FirstName desc' at line 1
-mysql> select * from addressbook where city = 'gwalior' ORDER BY FirstName desc;
-+-----------+----------+------------+---------+---------------+---------+-------------+------------------------------+
-| FirstName | lastName | address    | city    | state         | zipCode | phoneNumber | email                        |
-+-----------+----------+------------+---------+---------------+---------+-------------+------------------------------+
-| sohail    | kabeer   | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| abhishek  | rajawat  | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-+-----------+----------+------------+---------+---------------+---------+-------------+------------------------------+
-2 rows in set (0.01 sec)
-
-mysql> alter table addressbook add type varchar(50) after lastName;
-Query OK, 0 rows affected (0.05 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> select * from addressbook where city = 'gwalior' ORDER BY FirstName ;
-+-----------+----------+------+------------+---------+---------------+---------+-------------+------------------------------+
-| FirstName | lastName | type | address    | city    | state         | zipCode | phoneNumber | email                        |
-+-----------+----------+------+------------+---------+---------------+---------+-------------+------------------------------+
-| abhishek  | rajawat  | NULL | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| sohail    | kabeer   | NULL | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-+-----------+----------+------+------------+---------+---------------+---------+-------------+------------------------------+
-2 rows in set (0.00 sec)
-
-mysql> insert into addressbook value ('sohail','family','kabeer','kamlaNagar', 'gwalior','madhyaPradesh',474006,9971944613,'abhishekrajawat101@gmail.com');
-Query OK, 1 row affected (0.01 sec)
-
-mysql> select * from addressbook where city = 'gwalior' ORDER BY FirstName desc;
-+-----------+----------+--------+------------+---------+---------------+---------+-------------+------------------------------+
-| FirstName | lastName | type   | address    | city    | state         | zipCode | phoneNumber | email                        |
-+-----------+----------+--------+------------+---------+---------------+---------+-------------+------------------------------+
-| sohail    | kabeer   | NULL   | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| sohail    | family   | kabeer | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| abhishek  | rajawat  | NULL   | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-+-----------+----------+--------+------------+---------+---------------+---------+-------------+------------------------------+
-3 rows in set (0.00 sec)
-
-mysql> DELETE FROM addressbook where type = 'kabeer';
-Query OK, 1 row affected (0.00 sec)
-
-mysql> select * from addressbook where city = 'gwalior' ORDER BY FirstName desc;
-+-----------+----------+------+------------+---------+---------------+---------+-------------+------------------------------+
-| FirstName | lastName | type | address    | city    | state         | zipCode | phoneNumber | email                        |
-+-----------+----------+------+------------+---------+---------------+---------+-------------+------------------------------+
-| sohail    | kabeer   | NULL | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| abhishek  | rajawat  | NULL | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-+-----------+----------+------+------------+---------+---------------+---------+-------------+------------------------------+
-2 rows in set (0.00 sec)
-
-mysql> insert into addressbook value ('sohail','kabeer','family','kamlaNagar', 'gwalior','madhyaPradesh',474006,9971944613,'abhishekrajawat101@gmail.com');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> insert into addressbook value ('sohail','kabeer','friends','kamlaNagar', 'gwalior','madhyaPradesh',474006,9971944613,'abhishekrajawat101@gmail.com');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> select * from addressbook where city = 'gwalior' ORDER BY FirstName desc;
-+-----------+----------+---------+------------+---------+---------------+---------+-------------+------------------------------+
-| FirstName | lastName | type    | address    | city    | state         | zipCode | phoneNumber | email                        |
-+-----------+----------+---------+------------+---------+---------------+---------+-------------+------------------------------+
-| sohail    | kabeer   | NULL    | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| sohail    | kabeer   | family  | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| sohail    | kabeer   | friends | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| abhishek  | rajawat  | NULL    | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-+-----------+----------+---------+------------+---------+---------------+---------+-------------+------------------------------+
-4 rows in set (0.00 sec)
-
-mysql> insert into addressbook value ('abhishek','rajawat','family','kamlaNagar', 'gwalior','madhyaPradesh',474006,9971944613,'abhishekrajawat101@gmail.com');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> insert into addressbook value ('abhishek','rajawat','friends','kamlaNagar', 'gwalior','madhyaPradesh',474006,9971944613,'abhishekrajawat101@gmail.com');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> select * from addressbook where city = 'gwalior' ORDER BY FirstName ;
-+-----------+----------+---------+------------+---------+---------------+---------+-------------+------------------------------+
-| FirstName | lastName | type    | address    | city    | state         | zipCode | phoneNumber | email                        |
-+-----------+----------+---------+------------+---------+---------------+---------+-------------+------------------------------+
-| abhishek  | rajawat  | NULL    | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| abhishek  | rajawat  | family  | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| abhishek  | rajawat  | friends | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| sohail    | kabeer   | NULL    | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| sohail    | kabeer   | family  | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| sohail    | kabeer   | friends | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-+-----------+----------+---------+------------+---------+---------------+---------+-------------+------------------------------+
-6 rows in set (0.00 sec)
-
-mysql> SELECT * FROM addressbook;
-+-----------+----------+---------+------------+---------+---------------+---------+-------------+------------------------------+
-| FirstName | lastName | type    | address    | city    | state         | zipCode | phoneNumber | email                        |
-+-----------+----------+---------+------------+---------+---------------+---------+-------------+------------------------------+
-| abhishek  | rajawat  | NULL    | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| sohail    | kabeer   | NULL    | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| sohail    | kabeer   | family  | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| sohail    | kabeer   | friends | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| abhishek  | rajawat  | family  | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-| abhishek  | rajawat  | friends | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
-+-----------+----------+---------+------------+---------+---------------+---------+-------------+------------------------------+
-6 rows in set (0.00 sec)
-
-mysql> select count(FirstName) from addressbook where type = 'Family' ;
-+------------------+
-| count(FirstName) |
-+------------------+
-|                2 |
-+------------------+
-1 row in set (0.00 sec)
-
-mysql> exit
-Bye
-abhishekrajawat@Abhisheks-MacBook-Air ~ % clear
-
-abhishekrajawat@Abhisheks-MacBook-Air ~ % mysql --user=root -p
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 14
-Server version: 8.0.27 MySQL Community Server - GPL
-
-Copyright (c) 2000, 2021, Oracle and/or its affiliates.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> create database ebookshop;
-Query OK, 1 row affected (0.01 sec)
-
-mysql> use ebookshop;
-Database changed
-mysql> create table books(id int not null auto_increament, title varchar(30), author varchar (40),price float, quantity int,primary key(id));
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_increament, title varchar(30), author varchar (40),price float, quantity in' at line 1
-mysql> create table books(id int not null auto_increment, title varchar(30), author varchar (40),price float, quantity int,primary key(id));
-Query OK, 0 rows affected (0.04 sec)
-
-mysql> insert into books value (math,rd sharma, 615,2);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sharma, 615,2)' at line 1
-mysql> insert into books value (math,rd_sharma, 615,2);
-ERROR 1136 (21S01): Column count doesn't match value count at row 1
-mysql> insert into books value (math,rd_sharma, 61.5,2);
-ERROR 1136 (21S01): Column count doesn't match value count at row 1
-mysql> insert into books (title, author,price,quantity) values (math,rd_sharma, 61.5,2);
-ERROR 1054 (42S22): Unknown column 'math' in 'field list'
-mysql> insert into books (title, author,price,quantity) values ('math','rd_sharma', 61.5,2);
-Query OK, 1 row affected (0.01 sec)
-
-mysql> select * from books
-    -> select * from books;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from books' at line 2
-mysql> select * from books;
-+----+-------+-----------+-------+----------+
-| id | title | author    | price | quantity |
-+----+-------+-----------+-------+----------+
-|  1 | math  | rd_sharma |  61.5 |        2 |
-+----+-------+-----------+-------+----------+
-1 row in set (0.00 sec)
-
-mysql> insert into books (title, author,price,quantity) values ('physics','abhishek rajawat', 999,5);
-Query OK, 1 row affected (0.00 sec)
-
-mysql> select * from books;
-+----+---------+------------------+-------+----------+
-| id | title   | author           | price | quantity |
-+----+---------+------------------+-------+----------+
-|  1 | math    | rd_sharma        |  61.5 |        2 |
-|  2 | physics | abhishek rajawat |   999 |        5 |
-+----+---------+------------------+-------+----------+
-2 rows in set (0.01 sec)
-
-mysql> insert into books (title, author,price,quantity) values ('chemistry','kabeer', 879.6,7);
-Query OK, 1 row affected (0.00 sec)
-
-mysql> select * from books;
-+----+-----------+------------------+-------+----------+
-| id | title     | author           | price | quantity |
-+----+-----------+------------------+-------+----------+
-|  1 | math      | rd_sharma        |  61.5 |        2 |
-|  2 | physics   | abhishek rajawat |   999 |        5 |
-|  3 | chemistry | kabeer           | 879.6 |        7 |
-+----+-----------+------------------+-------+----------+
-3 rows in set (0.00 sec)
-
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| AddressBookService |
-| ebookshop          |
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-+--------------------+
-6 rows in set (0.00 sec)
-
-mysql> describe database;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
-mysql> describe books;
-+----------+-------------+------+-----+---------+----------------+
-| Field    | Type        | Null | Key | Default | Extra          |
-+----------+-------------+------+-----+---------+----------------+
-| id       | int         | NO   | PRI | NULL    | auto_increment |
-| title    | varchar(30) | YES  |     | NULL    |                |
-| author   | varchar(40) | YES  |     | NULL    |                |
-| price    | float       | YES  |     | NULL    |                |
-| quantity | int         | YES  |     | NULL    |                |
-+----------+-------------+------+-----+---------+----------------+
-5 rows in set (0.02 sec)
-
-mysql> exit
-Bye
 abhishekrajawat@Abhisheks-MacBook-Air ~ % clear
 
 abhishekrajawat@Abhisheks-MacBook-Air ~ % mysql --user=root -p
@@ -375,19 +34,10 @@ mysql> show databases;
 
 mysql> use payroll_service;
 Database changed
-mysql> create table employee_payroll ( id int not null auto increament,name varchar(50) not null, salary double not null, start date not null,primary key(id));
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto increament,name varchar(50) not null, salary double not null, start date no' at line 1
-mysql> create table employee_payroll ( id int not null auto increment,name varchar(50) not null, salary double not null, start date not null,primary key(id));
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto increment,name varchar(50) not null, salary double not null, start date not' at line 1
-mysql> create table employee_payroll ( id int not null auto_increament,name varchar(50) not null, salary double not null, start date not null,primary key(id));
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_increament,name varchar(50) not null, salary double not null, start date no' at line 1
+
 mysql> create table employee_payroll ( id int not null auto_increment,name varchar(50) not null, salary double not null, start date not null,primary key(id));
 Query OK, 0 rows affected (0.08 sec)
 
-mysql> insert into employee_payroll value('Bill',15000.00,'2019-01-08'),('Abhi',10000.00,'2020-01-09'),('Gilchrist',20000.00,'2021-06-05');
-ERROR 1136 (21S01): Column count doesn't match value count at row 1
-mysql> insert into employee_payroll (name,salary,start date) value('Bill',15000.00,'2019-01-08'),('Abhi',10000.00,'2020-01-09'),('Gilchrist',20000.00,'2021-06-05');
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'date) value('Bill',15000.00,'2019-01-08'),('Abhi',10000.00,'2020-01-09'),('Gilch' at line 1
 mysql> insert into employee_payroll (name,salary,start) value('Bill',15000.00,'2019-01-08'),('Abhi',10000.00,'2020-01-09'),('Gilchrist',20000.00,'2021-06-05');
 Query OK, 3 rows affected (0.02 sec)
 Records: 3  Duplicates: 0  Warnings: 0
@@ -564,16 +214,6 @@ mysql> select count(gender) from employee_payroll where gender= 'F';
 +---------------+
 1 row in set (0.00 sec)
 
-mysql> alter table employee_payroll add phone or address or department after start;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'or address or department after start' at line 1
-mysql> alter table employee_payroll add phone,address, department after start;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',address, department after start' at line 1
-mysql> alter table employee_payroll add phone after start;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'after start' at line 1
-mysql> alter table employee_payroll add phone int(10) or address varchar(150) or department varchar(20) not null  after name;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'or address varchar(150) or department varchar(20) not null  after name' at line 1
-mysql> alter table employee_payroll add phone int(10),address varchar(150), department varchar(20) not null  after name;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'address varchar(150), department varchar(20) not null  after name' at line 1
 mysql> select count(gender) from employee_payroll where gender= 'M' group by gender;
 +---------------+
 | count(gender) |
@@ -687,12 +327,6 @@ mysql> select * from employee_payroll;
 +----+-----------+--------+--------+------------+-------+---------+------------+
 4 rows in set (0.00 sec)
 
-mysql> update employee_payroll set gender='physics' where id = 1;
-ERROR 1406 (22001): Data too long for column 'gender' at row 1
-mysql> update employee_payroll set gender='physics' where id =1;
-ERROR 1406 (22001): Data too long for column 'gender' at row 1
-mysql> update employee_payroll set gender='physics' where id=1;
-ERROR 1406 (22001): Data too long for column 'gender' at row 1
 mysql> update employee_payroll set department='physics' where id=1;
 Query OK, 1 row affected (0.00 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
@@ -719,9 +353,6 @@ mysql> select * from employee_payroll;
 |  4 | Charlie   | M      |  78000 | 2018-01-09 |  NULL | NULL    | english    |
 +----+-----------+--------+--------+------------+-------+---------+------------+
 4 rows in set (0.00 sec)
-
-mysql> ALTER TABLE employee_payroll ADD COLUMN `Basic pay` double  after `department`, ADD COLUMN `deduction` double  after `Basic pay`, ADD COLUMN `Taxable pay` double  after `deduction`,ADD COLOUMN `Income Tax` double after `Taxable pay`,ADD COLOUMN `Net Pay`;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`Income Tax` double after `Taxable pay`,ADD COLOUMN `Net Pay`' at line 1
 mysql> ALTER TABLE employee_payroll ADD COLUMN `Basic pay` double  after `department`, ADD COLUMN `deduction` double  after `Basic pay`, ADD COLUMN `Taxable pay` double;
 Query OK, 0 rows affected (0.01 sec)
 Records: 0  Duplicates: 0  Warnings: 0
@@ -740,19 +371,5 @@ mysql> select * from employee_payroll;
 |  4 | Charlie   | M      |  78000 | 2018-01-09 |  NULL | NULL    | english    |      NULL |      NULL |        NULL |       NULL |    NULL |
 +----+-----------+--------+--------+------------+-------+---------+------------+-----------+-----------+-------------+------------+---------+
 4 rows in set (0.00 sec)
-
-mysql> insert into employee_payroll (name,gender,salary,start,phone,address,department,Basic Pay,deduction,Taxable Pay,Income Tax,Net Pay) value ('Terissa','F','20000,2018-02-05',9971944613,'Colony','Marketing',2830.00,0,0,0,0);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Pay,deduction,Taxable Pay,Income Tax,Net Pay) value ('Terissa','F','20000,2018-0' at line 1
-mysql> insert into employee_payroll (name,gender,salary,start,phone,address,department,Basic_Pay,deduction,Taxable_Pay,Income_Tax,Net_Pay) value ('Terissa','F','20000,2018-02-05',9971944613,'Colony','Marketing',2830.00,0,0,0,0);
-ERROR 1054 (42S22): Unknown column 'Basic_Pay' in 'field list'
-mysql> insert into employee_payroll (name,gender,salary,start,phone,address,department,Basic,deduction,Taxable,Income,Net) value ('Terissa','F','20000,2018-02-05',9971944613,'Colony','Marketing',2830.00,0,0,0,0);
-ERROR 1054 (42S22): Unknown column 'Basic' in 'field list'
-mysql> insert into employee_payroll (name, gender,salary, start, department, basic_pay, deduction, taxable_pay, income_tax, net_pay) values ('Terisa', 'F',300000.00, '2018-01-03', 'Marketing', 30000, 10000, 2000, 5000, 15000);
-ERROR 1054 (42S22): Unknown column 'basic_pay' in 'field list'
-mysql> insert into employee_payroll (name, gender,salary, start, department, basic pay, deduction, taxable pay, income tax, net pay) values ('Terissa', 'F',300000.00, '2018-01-03', 'Marketing', 30000, 10000); 
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'pay, deduction, taxable pay, income tax, net pay) values ('Terissa', 'F',300000.' at line 1
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2000, 5000, 15000)' at line 1
-mysql> insert into employee_payroll (name, gender,salary, start, department, basic pay, deduction, taxable pay, income tax, net pay) values ('Terissa', 'F',300000.00, '2018-01-03', 'Marketing', 30000, 10000); 2000, 5000, 15000);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'pay, deduction, taxable pay, income tax, net pay) values ('Terissa', 'F',300000.' at line 1
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2000, 5000, 15000)' at line 1
-mysql> 
+mysql> exit
+bye
