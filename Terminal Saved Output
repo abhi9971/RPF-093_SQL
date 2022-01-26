@@ -13,9 +13,6 @@ owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-mysql> DROP DATABASE AddressBookServices;
-Query OK, 1 row affected (0.04 sec)
-
 mysql> show databases;
 +--------------------+
 | Database           |
@@ -27,20 +24,6 @@ mysql> show databases;
 | sys                |
 +--------------------+
 5 rows in set (0.00 sec)
-
-mysql> DROP DATABASE AddressBookService;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| sys                |
-+--------------------+
-4 rows in set (0.00 sec)
 
 mysql> create database AddressBookService;
 Query OK, 1 row affected (0.00 sec)
@@ -202,6 +185,14 @@ Query OK, 1 row affected (0.00 sec)
 mysql> insert into addressbook value ('abhishek','rajawat','friends','kamlaNagar', 'gwalior','madhyaPradesh',474006,9971944613,'abhishekrajawat101@gmail.com');
 Query OK, 1 row affected (0.00 sec)
 
+mysql> select count(FirstName) from addressbook where type = 'Family' ;
++------------------+
+| count(FirstName) |
++------------------+
+|                2 |
++------------------+
+1 row in set (0.00 sec)
+
 mysql> select * from addressbook where city = 'gwalior' ORDER BY FirstName ;
 +-----------+----------+---------+------------+---------+---------------+---------+-------------+------------------------------+
 | FirstName | lastName | type    | address    | city    | state         | zipCode | phoneNumber | email                        |
@@ -227,14 +218,6 @@ mysql> SELECT * FROM addressbook;
 | abhishek  | rajawat  | friends | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
 +-----------+----------+---------+------------+---------+---------------+---------+-------------+------------------------------+
 6 rows in set (0.00 sec)
-
-mysql> select count(FirstName) from addressbook where type = 'Family' ;
-+------------------+
-| count(FirstName) |
-+------------------+
-|                2 |
-+------------------+
-1 row in set (0.00 sec)
 
 mysql> exit
 bye
