@@ -741,18 +741,14 @@ mysql> select * from employee_payroll;
 +----+-----------+--------+--------+------------+-------+---------+------------+-----------+-----------+-------------+------------+---------+
 4 rows in set (0.00 sec)
 
-mysql> insert into employee_payroll (name,gender,salary,start,phone,address,department,Basic Pay,deduction,Taxable Pay,Income Tax,Net Pay) value ('Terissa','F','20000,2018-02-05',9971944613,'Colony','Marketing',2830.00,0,0,0,0);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Pay,deduction,Taxable Pay,Income Tax,Net Pay) value ('Terissa','F','20000,2018-0' at line 1
-mysql> insert into employee_payroll (name,gender,salary,start,phone,address,department,Basic_Pay,deduction,Taxable_Pay,Income_Tax,Net_Pay) value ('Terissa','F','20000,2018-02-05',9971944613,'Colony','Marketing',2830.00,0,0,0,0);
-ERROR 1054 (42S22): Unknown column 'Basic_Pay' in 'field list'
-mysql> insert into employee_payroll (name,gender,salary,start,phone,address,department,Basic,deduction,Taxable,Income,Net) value ('Terissa','F','20000,2018-02-05',9971944613,'Colony','Marketing',2830.00,0,0,0,0);
-ERROR 1054 (42S22): Unknown column 'Basic' in 'field list'
-mysql> insert into employee_payroll (name, gender,salary, start, department, basic_pay, deduction, taxable_pay, income_tax, net_pay) values ('Terisa', 'F',300000.00, '2018-01-03', 'Marketing', 30000, 10000, 2000, 5000, 15000);
-ERROR 1054 (42S22): Unknown column 'basic_pay' in 'field list'
-mysql> insert into employee_payroll (name, gender,salary, start, department, basic pay, deduction, taxable pay, income tax, net pay) values ('Terissa', 'F',300000.00, '2018-01-03', 'Marketing', 30000, 10000); 
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'pay, deduction, taxable pay, income tax, net pay) values ('Terissa', 'F',300000.' at line 1
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2000, 5000, 15000)' at line 1
-mysql> insert into employee_payroll (name, gender,salary, start, department, basic pay, deduction, taxable pay, income tax, net pay) values ('Terissa', 'F',300000.00, '2018-01-03', 'Marketing', 30000, 10000); 2000, 5000, 15000);
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'pay, deduction, taxable pay, income tax, net pay) values ('Terissa', 'F',300000.' at line 1
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2000, 5000, 15000)' at line 1
-mysql> 
+insert into employee_payroll (name, gender,salary, start, phone, address, department, basic pay, deduction, taxable pay, income tax, net pay) values ('Terisa', 'F',650000.00, '2019-03-03', 'Sales and Marketing', 390000, 2000, 1000, 270, 1500);
++----+-----------+--------+--------+------------+-------+---------+------------+-----------+-----------+-------------+------------+---------+
+| id | name      | gender | salary | start      | phone | address | department | Basic pay | deduction | Taxable pay | Income Tax | Net Pay |
++----+-----------+--------+--------+------------+-------+---------+------------+-----------+-----------+-------------+------------+---------+
+|  1 | Bill      | M      |  15000 | 2019-01-08 |  NULL | NULL    | physics    |      NULL |      NULL |        NULL |       NULL |    NULL |
+|  2 | Abhi      | F      |  10000 | 2020-01-09 |  NULL | NULL    | math       |      NULL |      NULL |        NULL |       NULL |    NULL |
+|  3 | Terissa   | F      |  60000 | 2019-03-03 |  NULL | NULL    | Sales&Mark.|    390000 |      2000 |        1000 |       270  |    1500 |
+|  4 | Charlie   | M      |  78000 | 2018-01-09 |  NULL | NULL    | english    |      NULL |      NULL |        NULL |       NULL |    NULL |
++----+-----------+--------+--------+------------+-------+---------+------------+-----------+-----------+-------------+------------+---------+
+mysql> exit
+bye
