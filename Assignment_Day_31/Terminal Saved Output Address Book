@@ -218,6 +218,5 @@ mysql> SELECT * FROM addressbook;
 | abhishek  | rajawat  | friends | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | abhishekrajawat101@gmail.com |
 +-----------+----------+---------+------------+---------+---------------+---------+-------------+------------------------------+
 6 rows in set (0.00 sec)
-
 mysql> exit
 bye
