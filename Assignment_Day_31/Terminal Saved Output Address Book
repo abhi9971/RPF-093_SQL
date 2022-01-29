@@ -218,5 +218,25 @@ mysql> SELECT * FROM addressbook;
 | Ashutosh  | rajawat  | friends | kamlaNagar | gwalior | madhyaPradesh |  474006 |  9971944613 | ashutoshrajawat101@gmail.com |
 +-----------+----------+---------+------------+---------+---------------+---------+-------------+------------------------------+
 6 rows in set (0.00 sec)
+
+mysql> show tables;
++------------------------------+
+| Tables_in_addressbookservice |
++------------------------------+
+| AddressBook                  |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT count(*) AS TOTALNUMBEROFTABLES
+    ->  FROM INFORMATION_SCHEMA.TABLES
+    ->    WHERE TABLE_SCHEMA = 'AddressBookService';
++---------------------+
+| TOTALNUMBEROFTABLES |
++---------------------+
+|                   1 |
++---------------------+
+1 row in set (0.00 sec)
+
+
 mysql> exit
 bye
